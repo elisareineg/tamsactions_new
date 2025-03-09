@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #add8e6; /* Light blue background */
+  box-sizing: border-box; /* Ensure the border is included in the element's dimensions */
+}
+
+.card {
+  padding: 20px; /* Reduced padding to make the card less tall */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 500px; /* Increased max-width to make the card wider */
+  color: black; /* Black text */
+  background-color: white; /* Ensure the card has a white background */
+}
+
+.icon-container {
+  margin-bottom: 20px; /* Space below the fork and knife icon */
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 20px; /* Reduced margin to make the card less tall */
+  color: #002b7f;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-button {
+  padding: 15px 30px;
+  background-color: #002b7f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #001f5c;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}

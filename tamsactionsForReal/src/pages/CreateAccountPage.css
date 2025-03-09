@@ -1,0 +1,51 @@
+.create-account-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #add8e6; /* Light blue background */
+    padding: 20px;
+  }
+  
+  .create-account-page h1 {
+    font-size: 2.5rem;
+    color: #002b7f; /* Dark blue text */
+    margin-bottom: 20px;
+  }
+  
+  .create-account-page h2 {
+    font-size: 1.5rem;
+    color: #002b7f; /* Dark blue text */
+    margin-bottom: 10px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .auth-button {
+    padding: 15px 30px;
+    background-color: #002b7f; /* Dark blue background */
+    color: white; /* White text */
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .auth-button:hover {
+    background-color: #001f5c; /* Darker blue on hover */
+  }

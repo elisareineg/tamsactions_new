@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #add8e6; /* Light blue background */
+}
+
+.card {
+  background-color: white; /* White card box */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  color: black; /* Black text */
+}
+
+.title {
+  font-size: 3rem;
+  font-family: 'Orbitron';
+  margin-bottom: 30px;
+  color: #000000;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-button {
+  padding: 15px 30px;
+  background-color: white; /* White background */
+  color: black; /* Black text */
+  border: 2px solid #6982b5; /* Add a border for better visibility */
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #697ca1; /* Change to blue on hover */
+  color: white; /* Change text to white on hover */
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.dashboard {
+  width: 100%;
+  text-align: center;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 80px; /* Increased size of the logo */
+  height: auto;
+  margin-right: 15px;
+}
+
+.dashboard h1 {
+  font-size: 2.5rem;
+  color: #6585c4;
+}
+
+.dashboard-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard-button {
+  padding: 15px 30px;
+  background-color: #5673ac;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-button:hover {
+  background-color: #000000;
+}
+
+.fork-knife-icon {
+  font-size: 48px; /* Adjust the size as needed */
+}
