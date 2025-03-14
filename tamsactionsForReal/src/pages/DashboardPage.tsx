@@ -1,26 +1,54 @@
-import React from "react";
-import "./DashboardPage.css"; // Import the CSS file
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../../firebase"; // Import Firebase auth and Firestore
+import { doc, getDoc } from "firebase/firestore";
+import "./DashboardPage.css";
 
-// Define the props for the DashboardPage component
 interface DashboardPageProps {
-  onExit: () => void; // onExit is a function that takes no arguments and returns void
+  onExit: () => void;
 }
 
 const DashboardPage: React.FC<DashboardPageProps> = ({ onExit }) => {
+  const navigate = useNavigate();
+  const [tamBalance, setTamBalance] = useState(200);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          setTamBalance(userDoc.data().tamBalance);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const handleSellTam = () => {
+    navigate("/sell-tam");
+  };
+
+  const handlePurchaseTam = () => {
+    navigate("/purchase-tam");
+  };
+
   return (
     <div className="dashboard-page">
-      {/* EXIT button at the top right corner */}
       <button className="exit-button" onClick={onExit}>
         EXIT
       </button>
-
-      {/* Centered content */}
-      <div className="dashboard-content">
+      <div className="dashboard-card">
         <h1>HOME</h1>
-        <p className="tam-balance">TAM BALANCE: </p>
+        <p className="tam-balance">TAM BALANCE: {tamBalance}</p>
         <div className="dashboard-buttons">
-          <button className="dashboard-button">SELL TAM</button>
-          <button className="dashboard-button">PURCHASE TAM</button>
+          <button className="dashboard-button" onClick={handleSellTam}>
+            SELL TAM
+          </button>
+          <button className="dashboard-button" onClick={handlePurchaseTam}>
+            PURCHASE TAM
+          </button>
         </div>
       </div>
     </div>

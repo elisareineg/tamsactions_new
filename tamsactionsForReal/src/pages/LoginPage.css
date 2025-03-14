@@ -1,0 +1,441 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, 
+    #2b0548,  /* Deep purple */
+    #420516,  /* Dark red */
+    #1a0b2e,  /* Dark purple */
+    #4a1042   /* Deep magenta */
+  );
+  background-size: 300% 300%;
+  animation: gradientBG 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.background-utensils {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.25;
+  display: flex;
+  gap: 300px;
+  font-size: 1000px;
+  animation: floatUtensils 20s ease-in-out infinite;
+  width: 100%;
+  justify-content: center;
+}
+
+.fork, .knife {
+  transform-origin: center;
+  filter: blur(4px);
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 0 0 100px rgba(255, 255, 255, 0.3);
+}
+
+.fork {
+  transform: rotate(15deg);
+  animation: rotateFork 50s linear infinite;
+  margin-right: -100px;
+}
+
+.knife {
+  transform: rotate(-15deg);
+  animation: rotateKnife 45s linear infinite;
+  margin-left: -100px;
+}
+
+@keyframes floatUtensils {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.2;
+  }
+}
+
+@keyframes rotateFork {
+  from {
+    transform: rotate(15deg);
+  }
+  to {
+    transform: rotate(375deg);
+  }
+}
+
+@keyframes rotateKnife {
+  from {
+    transform: rotate(-15deg);
+  }
+  to {
+    transform: rotate(-375deg);
+  }
+}
+
+.login-container::before {
+  display: none;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.queens-logo {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+}
+
+.queens-text {
+  color: transparent;
+  background: linear-gradient(
+    45deg,
+    #002B7F 0%,    /* Romanian blue */
+    #FCD116 50%,   /* Romanian yellow */
+    #CE1126 100%   /* Romanian red */
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 32px;
+  font-family: serif;
+  font-weight: 600;
+  letter-spacing: -1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.queens-text:hover {
+  transform: scale(1.05);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(
+    45deg,
+    #CE1126 0%,    /* Romanian red */
+    #002B7F 50%,   /* Romanian blue */
+    #FCD116 100%   /* Romanian yellow */
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 60px;
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+  transform: translateY(0);
+  transition: all 0.4s ease;
+  margin: 0 20px;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(141, 11, 52, 0.3),
+    0 0 30px rgba(62, 11, 141, 0.3);
+}
+
+.login-header {
+  margin-bottom: 45px;
+}
+
+.login-header h1 {
+  background: linear-gradient(45deg, 
+    #fff 0%,
+    #e2e2e2 50%,
+    #fff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 4.5rem;
+  margin-bottom: 20px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 40px;
+}
+
+.microsoft-button,
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 22px 40px;
+  border: none;
+  border-radius: 18px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.microsoft-button {
+  background: linear-gradient(45deg, 
+    rgba(141, 11, 52, 0.9),    /* Red */
+    rgba(62, 11, 141, 0.9)     /* Purple */
+  );
+  color: white;
+}
+
+.google-button {
+  background: white;
+  color: #2f2f2f;
+}
+
+.microsoft-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.microsoft-button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.microsoft-button:hover:not(:disabled) {
+  background: linear-gradient(45deg, 
+    rgba(62, 11, 141, 0.9),     /* Purple */
+    rgba(141, 11, 52, 0.9)      /* Red */
+  );
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(141, 11, 52, 0.5);
+}
+
+.google-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.microsoft-button:disabled,
+.google-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.microsoft-icon {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+  gap: 2px;
+  margin-right: 4px;
+}
+
+.microsoft-icon::before,
+.microsoft-icon::after,
+.microsoft-icon div::before,
+.microsoft-icon div::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.microsoft-icon::before {
+  background: #f25022; /* Microsoft Red */
+}
+
+.microsoft-icon::after {
+  background: #00a4ef; /* Microsoft Blue */
+}
+
+.microsoft-icon div::before {
+  background: #7fba00; /* Microsoft Green */
+}
+
+.microsoft-icon div::after {
+  background: #ffb900; /* Microsoft Yellow */
+}
+
+.google-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.google-icon::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -90deg,
+    #ea4335 25%,    /* Red */
+    #4285f4 25%,    /* Blue */
+    #4285f4 50%,    /* Blue */
+    #34a853 50%,    /* Green */
+    #34a853 75%,    /* Green */
+    #fbbc05 75%     /* Yellow */
+  );
+}
+
+.google-icon::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.divider span {
+  margin: 0 10px;
+}
+
+.error-message {
+  color: #ff3b3b;
+  font-size: 1.1rem;
+  padding: 20px;
+  background-color: rgba(255, 59, 59, 0.1);
+  border-radius: 15px;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 59, 59, 0.2);
+  backdrop-filter: blur(5px);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 20px;
+  }
+
+  .login-card {
+    max-width: 90%;
+    padding: 40px;
+  }
+
+  .queens-logo {
+    width: 180px;
+    top: 20px;
+    left: 20px;
+  }
+
+  .background-logo {
+    font-size: 400px;
+  }
+
+  .login-header h1 {
+    font-size: 3.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .microsoft-button,
+  .google-button {
+    padding: 18px 30px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px;
+  }
+
+  .queens-logo {
+    width: 140px;
+  }
+
+  .background-logo {
+    font-size: 300px;
+  }
+
+  .login-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .microsoft-button,
+  .google-button {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+  }
+
+  .microsoft-icon,
+  .google-icon {
+    width: 28px;
+    height: 28px;
+  }
+} 

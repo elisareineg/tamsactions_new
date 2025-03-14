@@ -1,107 +1,74 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // For navigation
-import "./CreateAccountPage.css"; // Import the CSS file
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db, signInWithMicrosoft } from "../../firebase";
+import "./CreateAccountPage.css";
 
-// Define the props for the CreateAccountPage component
 interface CreateAccountPageProps {
-  onAccountCreated: () => void; // Callback for successful account creation
+  onAccountCreated: () => void;
 }
 
-const CreateAccountPage: React.FC<CreateAccountPageProps> = ({ onAccountCreated }) => {
-  const navigate = useNavigate(); // Hook for navigation
+const CreateAccountPage: React.FC<CreateAccountPageProps> = ({
+  onAccountCreated,
+}) => {
+  const navigate = useNavigate();
 
-  // State for form inputs
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const handleMicrosoftSignIn = async () => {
+    try {
+      const result = await signInWithMicrosoft();
+      const user = result.user;
 
-  // Regex for validation
-  const regexEmail = /@queensu.ca$/; // Validate Queen's email
-  const regexPassword = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/; // Validate password
+      // Check if the email is a Queen's University email
+      if (!user.email?.endsWith("@queensu.ca")) {
+        await auth.signOut();
+        alert("Please use a Queen's University email address.");
+        return;
+      }
 
-  // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+      // Store user data in Firestore
+      await setDoc(
+        doc(db, "users", user.uid),
+        {
+          email: user.email,
+          createdAt: new Date().toISOString(),
+          tamBalance: 200, // Initial TAM balance
+        },
+        { merge: true }
+      ); // Use merge to avoid overwriting existing data
 
-    // Validate Queen's email
-    if (!regexEmail.test(email)) {
-      alert("Please use a valid Queen's University email.");
-      return;
+      onAccountCreated();
+      navigate("/dashboard");
+      alert("Successfully signed in!");
+    } catch (error) {
+      console.error("Error signing in with Microsoft:", error);
+      alert("Failed to sign in. Please try again.");
     }
-
-    // Validate password
-    if (!regexPassword.test(password)) {
-      alert(
-        "Password must be at least 8 characters long, contain one uppercase letter, and one symbol."
-      );
-      return;
-    }
-
-    // Confirm password
-    if (password !== confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
-
-    // If all validations pass, create the account and go to the dashboard
-    console.log("Account created successfully");
-    onAccountCreated(); // Notify parent component that account was created
-    navigate("/dashboard"); // Redirect to the dashboard
   };
 
-  // Handle cancel button click
   const handleCancel = () => {
-    navigate("/"); // Go back to the login page
+    navigate("/");
   };
 
   return (
     <div className="create-account-page">
-      <h1>Create Account</h1>
-      <form onSubmit={handleSubmit}>
-        <h2>Queen's Email</h2>
-        <input
-          className="input-field"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your Queen's email"
-          required
-        />
-        <br />
-        <h2>Password</h2>
-        <input
-          className="input-field"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
-          required
-        />
-        <br />
-        <h2>Confirm Password</h2>
-        <input
-          className="input-field"
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder="Confirm your password"
-          required
-        />
-        <br />
-        <br />
-        <div className="button-container">
-          <button type="submit" className="auth-button">
-            Create Account
-          </button>
-          <button
-            type="button"
-            className="auth-button"
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+      <h1>Sign In with Microsoft</h1>
+      <div className="auth-container">
+        <p>Please use your Queen's University Microsoft account to sign in.</p>
+        <button
+          className="microsoft-auth-button"
+          onClick={handleMicrosoftSignIn}
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png"
+            alt="Microsoft logo"
+            className="microsoft-logo"
+          />
+          Sign in with Microsoft
+        </button>
+        <button className="cancel-button" onClick={handleCancel}>
+          Cancel
+        </button>
+      </div>
     </div>
   );
 };
