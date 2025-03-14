@@ -4,7 +4,7 @@
 
 ## The goal of this SPA is to create a web application for Queen's students to be able to trade in extra meal currency they have not used in exchange for real money. 
 
-## I used a mixture of Javascript, Typescript, CSS, and React to develop the front-end features of the website, as well as Javascript, Firebase, and Google Cloud for the back-end. My plan was to use Microsoft Azure to create an API key for the Queen's Microsoft authentication process, however, I found out while building my project that I required special permission from the Queen's IT Team to retrieve this key. At the moment, i'm using Google Authentication as a substitute so I can showcase the features of my website.
+## I used a mixture of Javascript, Typescript, CSS, and React to develop the front-end features of the website, as well as Javascript/Typescript, Firebase, and Google Cloud for the back-end. My plan was to use Microsoft Azure to create an API key for the Queen's Microsoft authentication process, however, I found out while building my project that I required special permission from the Queen's IT Team to retrieve this key. At the moment, i'm using Google Authentication as a substitute so I can showcase the features of my website.
 
 ## On the sign in page, users will be asked to log in with either a Microsoft or Google account. 
 
